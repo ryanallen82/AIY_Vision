@@ -22,6 +22,8 @@ Example:
 image_classification_camera.py --num_frames 10
 """
 
+print('testing git')
+
 import argparse
 import contextlib
 
