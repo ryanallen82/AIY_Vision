@@ -30,7 +30,7 @@ import contextlib
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import image_classification
 from aiy.vision.annotator import Annotator
-from aiy.vision.les import Leds, PrivacyLed
+from aiy.vision.leds import Leds, PrivacyLed
 from picamera import PiCamera
 
 def classes_info(classes):
