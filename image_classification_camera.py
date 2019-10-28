@@ -30,7 +30,7 @@ import contextlib
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import image_classification
 from aiy.vision.annotator import Annotator
-from aiy.vision.leds import Leds, PrivacyLed
+from aiy.leds import Leds
 from picamera import PiCamera
 
 def classes_info(classes):
@@ -58,9 +58,10 @@ def main():
 
     with PiCamera(sensor_mode=4, framerate=30) as camera, \
          CameraPreview(camera, enabled=args.preview), \
-         CameraInference(image_classification.model()) as inference, \
-         PrivacyLed(Leds()):
+         CameraInference(image_classification.model()) as inference:
 
+        with Leds() as leds:
+            leds.update(Leds.privacy_on())
         annotator = Annotator(camera, dimensions=(320, 240))
         scale_x = 320/1640
         scale_y = 240/1232
