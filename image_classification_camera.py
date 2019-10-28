@@ -21,6 +21,8 @@ classes.
 Example:
 image_classification_camera.py --num_frames 10
 """
+print("testing github")
+
 import argparse
 import contextlib
 
