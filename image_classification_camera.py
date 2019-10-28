@@ -74,8 +74,8 @@ def main():
             if classes:
                 annotator.clear()
                 camera.annotate_text = '%s (%.2f)' % classes[0]
-                for class in classes:
-                    annotator.bounding_box(transform(class.bounding_box), fill=0)
+                for c in classes:
+                    annotator.bounding_box(transform(c.bounding_box), fill=0)
                 annotator.update()
 
 if __name__ == '__main__':
