@@ -72,11 +72,11 @@ def main():
             classes = image_classification.get_classes(result, top_k=args.num_objects)
             print(classes_info(classes))
             if classes:
-                annotator.clear()
+                #annotator.clear()
                 camera.annotate_text = '%s (%.2f)' % classes[0]
-                for c in classes:
-                    annotator.bounding_box(transform(c.bounding_box), fill=0)
-                annotator.update()
+                #for c in classes:
+                #    annotator.bounding_box(transform(c.bounding_box), fill=0)
+                #annotator.update()
 
 if __name__ == '__main__':
     main()
