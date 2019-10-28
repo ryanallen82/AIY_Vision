@@ -29,6 +29,7 @@ import contextlib
 
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import image_classification
+from aiy.vision.annotator import Annotator
 from picamera import PiCamera
 
 def classes_info(classes):
@@ -57,11 +58,25 @@ def main():
     with PiCamera(sensor_mode=4, framerate=30) as camera, \
          CameraPreview(camera, enabled=args.preview), \
          CameraInference(image_classification.model()) as inference:
+
+        annotator = Annotator(camera, dimensions=(320, 240))
+        scale_x = 320/1640
+        scale_y = 240/1232
+
+        def transform(bounding_box):
+            x, y, width, height = bounding_box
+            return (scale_x * x, scale_y * y, scale_x * (x + width),
+                    scale_y * (y + height))
+
         for result in inference.run(args.num_frames):
             classes = image_classification.get_classes(result, top_k=args.num_objects)
             print(classes_info(classes))
             if classes:
+                annotator.clear()
                 camera.annotate_text = '%s (%.2f)' % classes[0]
+                for class in classes:
+                    annotator.bounding_box(transform(class.bounding_box), fill=0)
+                annotator.update()
 
 if __name__ == '__main__':
     main()
