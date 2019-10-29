@@ -69,6 +69,7 @@ def main():
                 camera.annotate_text = '%s (%.2f)' % classes[0]
                 if 'chicken' in classes[0]:
                     camera.capture('chickens.jpg')
+                    print('Chicken captured')
                 #for c in classes:
                 #    annotator.bounding_box(transform(c.bounding_box), fill=0)
                 #annotator.update()
