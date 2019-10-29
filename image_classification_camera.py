@@ -60,17 +60,9 @@ def main():
          Leds() as leds:
 
         leds.update(Leds.privacy_on())
-        annotator = Annotator(camera, dimensions=(320, 240))
-        scale_x = 320/1640
-        scale_y = 240/1232
-
-        def transform(bounding_box):
-            x, y, width, height = bounding_box
-            return (scale_x * x, scale_y * y, scale_x * (x + width),
-                    scale_y * (y + height))
 
         for result in inference.run(args.num_frames):
-            classes = image_classification.get_classes(result, top_k=args.num_objects, threshold=.5)
+            classes = image_classification.get_classes(result, top_k=args.num_objects, threshold=.3)
             print(classes_info(classes))
             if classes:
                 #annotator.clear()
