@@ -48,7 +48,7 @@ def main():
     parser = argparse.ArgumentParser('Image classification camera inference example.')
     parser.add_argument('--num_frames', '-n', type=int, default=None,
         help='Sets the number of frames to run for, otherwise runs forever.')
-    parser.add_argument('--num_objects', '-c', type=int, default=3,
+    parser.add_argument('--num_objects', '-c', type=int, default=2,
         help='Sets the number of object interences to print.')
     parser.add_argument('--nopreview', dest='preview', action='store_false', default=True,
         help='Enable camera preview')
@@ -70,7 +70,7 @@ def main():
                     scale_y * (y + height))
 
         for result in inference.run(args.num_frames):
-            classes = image_classification.get_classes(result, top_k=args.num_objects)
+            classes = image_classification.get_classes(result, top_k=args.num_objects, threshold=.5)
             print(classes_info(classes))
             if classes:
                 #annotator.clear()
