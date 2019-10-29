@@ -58,10 +58,10 @@ def main():
 
     with PiCamera(sensor_mode=4, framerate=30) as camera, \
          CameraPreview(camera, enabled=args.preview), \
-         CameraInference(image_classification.model()) as inference:
+         CameraInference(image_classification.model()) as inference, \
+         Leds() as leds:
 
-        with Leds() as leds:
-            leds.update(Leds.privacy_on())
+        leds.update(Leds.privacy_on())
         annotator = Annotator(camera, dimensions=(320, 240))
         scale_x = 320/1640
         scale_y = 240/1232
