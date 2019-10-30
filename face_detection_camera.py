@@ -49,7 +49,7 @@ def main():
     with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera,\
                         Leds() as leds:
         leds.update(Leds.privacy_on())
-        leds.update(Leds.rgb_on(LEFT_COLOR))
+        leds.update(Leds.rgb_on(Color.BLUE))
         camera.start_preview()
 
         # Annotator renders in software so use a smaller size and scale results
