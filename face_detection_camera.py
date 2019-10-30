@@ -51,11 +51,11 @@ def main():
     # This is the resolution inference run on.
     with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera,\
                         Leds() as leds:
-        tone_player = TonePlayer(BUZZER_GPIO)                
+        tone_player = TonePlayer(BUZZER_GPIO)
         leds.update(Leds.privacy_on())
         leds.update(Leds.rgb_on(Color.BLUE))
         camera.start_preview()
-        tone_player.play(LOAD_SOUND)
+        tone_player.play(*LOAD_SOUND)
 
         # Annotator renders in software so use a smaller size and scale results
         # for increased performace.
