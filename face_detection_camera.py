@@ -30,9 +30,6 @@ from aiy.vision.annotator import Annotator
 from aiy.leds import Leds, Color
 
 LEFT_COLOR = (204, 0, 255)
-RIGHT_COLOR = (255, 0, 102)
-ON_COLOR = (102, 204, 255)
-
 
 def avg_joy_score(faces):
     if faces:
@@ -83,7 +80,7 @@ def main():
                         (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
                     camera.annotate_text = '%d' % x
                     alpha = (x+.01)/1200
-                    leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.RED, alpha)))
+                    leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
 
                 else:
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f' %
