@@ -69,16 +69,15 @@ def main():
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
                         (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
                     #camera.annotate_text = '%d' % x
-                    alpha = (x+.01)/1200
+                    if x > 0:
+                        alpha = x/float(1200)
+                    else:
+                        alpha = .5
                     leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
                     distance = focal_length * real_face_width_inches / width
                     camera.annotate_text = '%d inches' % distance
-
-
-
                 else:
-                    print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f' %
-                        (inference.count, inference.rate, len(faces), avg_joy_score(faces)))
+                    pass
 
         camera.stop_preview()
 
