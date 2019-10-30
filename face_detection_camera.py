@@ -6,8 +6,11 @@ from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
 from aiy.vision.annotator import Annotator
 from aiy.leds import Leds, Color
+from aiy.toneplayer import TonePlayer
 
 LEFT_COLOR = (204, 0, 255)
+LOAD_SOUND = ('G5e', 'f5e', 'd5e', 'A5e', 'g5e', 'E5e', 'g5e', 'C6e')
+BUZZER_GPIO = 22
 
 def avg_joy_score(faces):
     if faces:
@@ -29,6 +32,8 @@ def main():
         leds.update(Leds.privacy_on())
         leds.update(Leds.rgb_on(Color.BLUE))
         camera.start_preview()
+        tone_player = TonePlayer(BUZZER_GPIO, bpm=60)
+        tone_player.play(*LOAD_SOUND)
 
         # Annotator renders in software so use a smaller size and scale results
         # for increased performace.
