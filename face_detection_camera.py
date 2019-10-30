@@ -73,7 +73,10 @@ def main():
                         alpha = x/float(1200)
                     else:
                         alpha = .5
-                    leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
+                    try:
+                        leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
+                    except:
+                        pass
                     distance = focal_length * real_face_width_inches / width
                     camera.annotate_text = '%d inches' % distance
                 else:
