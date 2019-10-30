@@ -29,7 +29,7 @@ from aiy.vision.models import face_detection
 from aiy.vision.annotator import Annotator
 from aiy.leds import Leds, Color
 
-LEFT_COLOR = (204, 153, 255)
+LEFT_COLOR = (204, 0, 255)
 RIGHT_COLOR = (255, 0, 102)
 ON_COLOR = (102, 204, 255)
 
