@@ -79,7 +79,8 @@ def main():
                     distance = focal_length * real_face_width_inches / width
                     camera.annotate_text = '%d inches' % distance
                     if distance >= 40:
-                        leds.update(leds.pattern = Pattern.breathe(500))
+                        leds.pattern = Pattern.breathe(500)
+                        leds.update(leds.rbb_on())
                     else:
                         pass
 
