@@ -12,6 +12,10 @@ LEFT_COLOR = (204, 0, 255)
 LOAD_SOUND = ('G5e', 'f5e', 'd5e', 'A5e', 'g5e', 'E5e', 'g5e', 'C6e')
 BUZZER_GPIO = 22
 
+focal_length = 1320
+camera_resolution = (1640, 1232)
+real_face_width_inches = 11
+
 
 def avg_joy_score(faces):
     if faces:
@@ -67,7 +71,8 @@ def main():
                     #camera.annotate_text = '%d' % x
                     alpha = (x+.01)/1200
                     leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
-
+                    distance = focal_length * real_face_width_inches / width
+                    camera.annotate_text = '%d inches' % distance
 
 
 
