@@ -27,7 +27,11 @@ from picamera import PiCamera
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
 from aiy.vision.annotator import Annotator
-from aiy.leds import Leds
+from aiy.leds import Leds, Color
+
+LEFT_COLOR = (204, 153, 255)
+RIGHT_COLOR = (255, 0, 102)
+ON_COLOR = (102, 204, 255)
 
 
 def avg_joy_score(faces):
@@ -48,6 +52,7 @@ def main():
     with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera,\
                         Leds() as leds:
         leds.update(Leds.privacy_on())
+        leds.update(Leds.rgb_on(ON_COLOR))
         camera.start_preview()
 
         # Annotator renders in software so use a smaller size and scale results
@@ -77,6 +82,9 @@ def main():
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
                         (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
                     camera.annotate_text = '%d' % x
+                    alpha = (x+.01)/1200
+                    leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, RIGHT_COLOR, alpha)))
+
                 else:
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f' %
                         (inference.count, inference.rate, len(faces), avg_joy_score(faces)))
