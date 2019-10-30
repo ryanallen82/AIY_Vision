@@ -64,16 +64,20 @@ def main():
                 if len(faces) >= 1:
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
                         (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
-                    camera.annotate_text = '%d' % x
+                    #camera.annotate_text = '%d' % x
                     alpha = (x+.01)/1200
                     leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
+                    """
                     if w_last > width:
                         camera.annotate_text = 'Further'
                     elif w_last < width:
                         camera.annotate_text = 'Closer'
                     else:
                         camera.annotate_text ='Same'
+                    """
+                    camera.annotate_text = 'Last Width: %d, Current Width: %d' % (w_last, width)
                     w_last = width
+
 
                 else:
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f' %
