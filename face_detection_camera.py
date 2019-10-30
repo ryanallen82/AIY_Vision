@@ -1,25 +1,3 @@
-#!/usr/bin/env python3
-# Copyright 2017 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-"""Camera inference face detection demo code.
-
-Runs continuous face detection on the VisionBonnet and prints the number of
-detected faces.
-
-Example:
-face_detection_camera.py --num_frames 10
-"""
 import argparse
 
 from picamera import PiCamera
@@ -28,11 +6,8 @@ from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
 from aiy.vision.annotator import Annotator
 from aiy.leds import Leds, Color
-from aiy.toneplayer import TonePlayer
 
 LEFT_COLOR = (204, 0, 255)
-LOAD_SOUND = ('G5e', 'f5e', 'd5e', 'A5e', 'g5e', 'E5e', 'g5e', 'C6e')
-BUZZER_GPIO = 22
 
 def avg_joy_score(faces):
     if faces:
@@ -51,15 +26,13 @@ def main():
     # This is the resolution inference run on.
     with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera,\
                         Leds() as leds:
-        tone_player = TonePlayer(BUZZER_GPIO, bpm=60)
         leds.update(Leds.privacy_on())
         leds.update(Leds.rgb_on(Color.BLUE))
         camera.start_preview()
-        tone_player.play(*LOAD_SOUND)
 
         # Annotator renders in software so use a smaller size and scale results
         # for increased performace.
-        annotator = Annotator(camera, dimensions=(320, 100))
+        annotator = Annotator(camera, dimensions=(320, 240))
         scale_x = 320 / 1640
         scale_y = 240 / 1232
 
@@ -77,26 +50,20 @@ def main():
                 for face in faces:
                     annotator.bounding_box(transform(face.bounding_box), fill=None)
                     x, y, width, height = face.bounding_box
+
+                annotator.update()
+
+                if x:
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
-                                (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
+                        (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
                     camera.annotate_text = '%d' % x
                     alpha = (x+.01)/1200
                     leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
 
-                annotator.update()
-                #try:
-                #    if x:
-                #        print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
-                #            (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
-                #        camera.annotate_text = '%d' % x
-                #        alpha = (x+.01)/1200
-                #        leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
+                else:
+                    print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f' %
+                        (inference.count, inference.rate, len(faces), avg_joy_score(faces)))
 
-                #    else:
-                #        print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f' %
-                #        (inference.count, inference.rate, len(faces), avg_joy_score(faces)))
-                #except:
-                #    pass
         camera.stop_preview()
 
 
