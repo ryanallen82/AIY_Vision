@@ -43,8 +43,6 @@ def main():
         scale_x = 320 / 1640
         scale_y = 240 / 1232
 
-        w_last = 0
-
         # Incoming boxes are of the form (x, y, width, height). Scale and
         # transform to the form (x1, y1, x2, y2).
         def transform(bounding_box):
@@ -58,7 +56,6 @@ def main():
                 annotator.clear()
                 for face in faces:
                     annotator.bounding_box(transform(face.bounding_box), fill=0)
-                    #annotator.bounding_box(face.bounding_box, fill=0)
                     x, y, width, height = face.bounding_box
 
                 annotator.update()
@@ -71,15 +68,7 @@ def main():
                     alpha = (x+.01)/1200
                     leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
 
-                    if w_last > (width + 10):
-                        camera.annotate_text = 'Further'
-                    elif w_last < (width + 10):
-                        camera.annotate_text = 'Closer'
-                    else:
-                        camera.annotate_text ='Same'
 
-                    #camera.annotate_text = 'Last Width: %d, Current Width: %d' % (w_last, width)
-                    w_last = width
 
 
                 else:
