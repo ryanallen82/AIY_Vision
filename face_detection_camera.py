@@ -32,7 +32,7 @@ def main():
         leds.update(Leds.privacy_on())
         leds.update(Leds.rgb_on(Color.BLUE))
         camera.start_preview()
-        tone_player = TonePlayer(BUZZER_GPIO, bpm=80)
+        tone_player = TonePlayer(BUZZER_GPIO, bpm=70)
         tone_player.play(*LOAD_SOUND)
 
 
