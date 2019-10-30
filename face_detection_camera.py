@@ -57,8 +57,8 @@ def main():
                 faces = face_detection.get_faces(result)
                 annotator.clear()
                 for face in faces:
-                    #annotator.bounding_box(transform(face.bounding_box), fill=0)
-                    annotator.bounding_box(face.bounding_box, fill=0)
+                    annotator.bounding_box(transform(face.bounding_box), fill=0)
+                    #annotator.bounding_box(face.bounding_box, fill=0)
                     x, y, width, height = face.bounding_box
 
                 annotator.update()
