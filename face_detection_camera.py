@@ -50,7 +50,7 @@ def main():
     # https://picamera.readthedocs.io/en/release-1.13/fov.html#sensor-modes
     # This is the resolution inference run on.
     with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera,\
-                        Leds() as leds\
+                        Leds() as leds, \
                         TonePlayer(BUZZER_GPIO) as tone_player:
         leds.update(Leds.privacy_on())
         leds.update(Leds.rgb_on(Color.BLUE))
