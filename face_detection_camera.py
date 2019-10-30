@@ -28,8 +28,11 @@ from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
 from aiy.vision.annotator import Annotator
 from aiy.leds import Leds, Color
+from aiy.toneplayer import TonePlayer
 
 LEFT_COLOR = (204, 0, 255)
+LOAD_SOUND = ('G6q', 'a6q', 'd6q', 'A6q', 'g6q', 'E6q', 'g6q', 'C6q')
+BUZZER_GPIO = 22
 
 def avg_joy_score(faces):
     if faces:
@@ -47,10 +50,12 @@ def main():
     # https://picamera.readthedocs.io/en/release-1.13/fov.html#sensor-modes
     # This is the resolution inference run on.
     with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera,\
-                        Leds() as leds:
+                        Leds() as leds\
+                        TonePlayer(BUZZER_GPIO) as tone_player:
         leds.update(Leds.privacy_on())
         leds.update(Leds.rgb_on(Color.BLUE))
         camera.start_preview()
+        tone_player.play(LOAD_SOUND)
 
         # Annotator renders in software so use a smaller size and scale results
         # for increased performace.
