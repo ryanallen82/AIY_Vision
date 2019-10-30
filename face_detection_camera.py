@@ -76,7 +76,7 @@ def main():
                 if x:
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
                         (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
-                    camera.annotate_text(x)
+                    camera.annotate_text = '%d' % x
                 else:
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f' %
                         (inference.count, inference.rate, len(faces), avg_joy_score(faces)))
