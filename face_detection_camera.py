@@ -70,6 +70,7 @@ def main():
                 for face in faces:
                     annotator.bounding_box(transform(face.bounding_box), fill=0)
                     x, y, width, height = face.bounding_box
+                    annotator.text((x, y+10), str(x))
                 annotator.update()
 
                 if x:
