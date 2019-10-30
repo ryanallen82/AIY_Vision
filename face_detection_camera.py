@@ -43,6 +43,8 @@ def main():
         scale_x = 320 / 1640
         scale_y = 240 / 1232
 
+        w_last = 0
+
         # Incoming boxes are of the form (x, y, width, height). Scale and
         # transform to the form (x1, y1, x2, y2).
         def transform(bounding_box):
@@ -59,7 +61,7 @@ def main():
                     x, y, width, height = face.bounding_box
 
                 annotator.update()
-                w_last = 0
+
 
                 if len(faces) >= 1:
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
@@ -76,7 +78,6 @@ def main():
                         camera.annotate_text ='Same'
                     """
                     camera.annotate_text = 'Last Width: %d, Current Width: %d' % (w_last, width)
-
                     w_last = width
 
 
