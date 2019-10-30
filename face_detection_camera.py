@@ -5,7 +5,7 @@ from picamera import PiCamera
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
 from aiy.vision.annotator import Annotator
-from aiy.leds import Leds, Color
+from aiy.leds import Leds, Color, Pattern
 from aiy.toneplayer import TonePlayer
 
 LEFT_COLOR = (204, 0, 255)
