@@ -76,6 +76,7 @@ def main():
                         camera.annotate_text ='Same'
                     """
                     camera.annotate_text = 'Last Width: %d, Current Width: %d' % (w_last, width)
+
                     w_last = width
 
 
