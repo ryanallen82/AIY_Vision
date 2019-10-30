@@ -80,7 +80,7 @@ def main():
                     camera.annotate_text = '%d inches' % distance
                     if distance >= 40:
                         leds.pattern = Pattern.blink(500)
-                        leds.update(leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
+                        leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
                     else:
                         pass
 
