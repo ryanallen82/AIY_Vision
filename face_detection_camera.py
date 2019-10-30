@@ -51,7 +51,7 @@ def main():
     # This is the resolution inference run on.
     with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera,\
                         Leds() as leds:
-        tone_player = TonePlayer(BUZZER_GPIO, bpm=240)
+        tone_player = TonePlayer(BUZZER_GPIO, bpm=60)
         leds.update(Leds.privacy_on())
         leds.update(Leds.rgb_on(Color.BLUE))
         camera.start_preview()
