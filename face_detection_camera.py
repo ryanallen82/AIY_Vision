@@ -77,21 +77,26 @@ def main():
                 for face in faces:
                     annotator.bounding_box(transform(face.bounding_box), fill=None)
                     x, y, width, height = face.bounding_box
+                    print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
+                                (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
+                    camera.annotate_text = '%d' % x
+                    alpha = (x+.01)/1200
+                    leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
 
                 annotator.update()
-                try:
-                    if x:
-                        print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
-                            (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
-                        camera.annotate_text = '%d' % x
-                        alpha = (x+.01)/1200
-                        leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
+                #try:
+                #    if x:
+                #        print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
+                #            (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
+                #        camera.annotate_text = '%d' % x
+                #        alpha = (x+.01)/1200
+                #        leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
 
-                    else:
-                        print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f' %
-                        (inference.count, inference.rate, len(faces), avg_joy_score(faces)))
-                except:
-                    pass
+                #    else:
+                #        print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f' %
+                #        (inference.count, inference.rate, len(faces), avg_joy_score(faces)))
+                #except:
+                #    pass
         camera.stop_preview()
 
 
