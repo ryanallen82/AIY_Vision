@@ -75,7 +75,7 @@ def main():
                     try:
                         leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
                     except:
-                        leds.update(Leds.rgb_on(Color.BLUE)
+                        leds.update(Leds.rgb_on(Color.BLUE))
                     distance = focal_length * real_face_width_inches / width
                     camera.annotate_text = '%d inches' % distance
                 else:
