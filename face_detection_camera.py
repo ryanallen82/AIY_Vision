@@ -33,7 +33,7 @@ def main():
         leds.update(Leds.rgb_on(Color.BLUE))
         camera.start_preview()
         tone_player = TonePlayer(BUZZER_GPIO, bpm=60)
-        tone_player.play(*LOAD_SOUND)
+
 
         # Annotator renders in software so use a smaller size and scale results
         # for increased performace.
@@ -62,6 +62,7 @@ def main():
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
                         (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
                     camera.annotate_text = '%d' % x
+                    tone_player.play(*LOAD_SOUND)
                     alpha = (x+.01)/1200
                     leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
 
