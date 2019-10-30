@@ -70,15 +70,15 @@ def main():
                     #camera.annotate_text = '%d' % x
                     alpha = (x+.01)/1200
                     leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
-
+                    """
                     if w_last > width:
                         camera.annotate_text = 'Further'
                     elif w_last < width:
                         camera.annotate_text = 'Closer'
                     else:
                         camera.annotate_text ='Same'
-
-                    #camera.annotate_text = 'Last Width: %d, Current Width: %d' % (w_last, width)
+                    """
+                    camera.annotate_text = 'Last Width: %d, Current Width: %d' % (w_last, width)
                     w_last = width
 
 
