@@ -70,7 +70,7 @@ def main():
                 for face in faces:
                     annotator.bounding_box(transform(face.bounding_box), fill=None)
                     x, y, width, height = face.bounding_box
-                    camera.annotate_text('%s') % x
+                    camera.annotate_text('%.2f') % x
                 annotator.update()
 
                 if x:
