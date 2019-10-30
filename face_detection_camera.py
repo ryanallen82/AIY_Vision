@@ -68,9 +68,9 @@ def main():
                 faces = face_detection.get_faces(result)
                 annotator.clear()
                 for face in faces:
-                    annotator.bounding_box(transform(face.bounding_box), fill=0)
+                    annotator.bounding_box(transform(face.bounding_box), fill=None)
                     x, y, width, height = face.bounding_box
-                    annotator.text((x, y+10), str(x))
+                    camera.annotate_text(%d) % x
                 annotator.update()
 
                 if x:
