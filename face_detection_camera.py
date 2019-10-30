@@ -14,7 +14,7 @@ BUZZER_GPIO = 22
 
 focal_length = 1320
 camera_resolution = (1640, 1232)
-real_face_width_inches = 11
+real_face_width_inches = 7
 
 
 def avg_joy_score(faces):
@@ -75,7 +75,7 @@ def main():
                     try:
                         leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
                     except:
-                        leds.update(Leds.rgb_on(Color.BLUE))
+                        pass
                     distance = focal_length * real_face_width_inches / width
                     camera.annotate_text = '%d inches' % distance
                 else:
