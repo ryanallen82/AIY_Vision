@@ -68,11 +68,11 @@ def main():
                     alpha = (x+.01)/1200
                     leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
                     if w_last > width:
-                        camera.annotate_text('Further')
+                        camera.annotate_text = 'Further'
                     elif w_last < width:
-                        camera.annotate_text('Closer')
+                        camera.annotate_text = 'Closer'
                     else:
-                        camera.annotate_text('Same')
+                        camera.annotate_text ='Same'
                     w_last = width
 
                 else:
