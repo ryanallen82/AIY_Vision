@@ -31,7 +31,7 @@ from aiy.leds import Leds, Color
 from aiy.toneplayer import TonePlayer
 
 LEFT_COLOR = (204, 0, 255)
-LOAD_SOUND = ('G5e', 'f5e', 'd5e', 'A5e', 'g5e', 'E5e', 'g5e', 'C5e')
+LOAD_SOUND = ('G5e', 'f5e', 'd5e', 'A5e', 'g5e', 'E5e', 'g5e', 'C6e')
 BUZZER_GPIO = 22
 
 def avg_joy_score(faces):
