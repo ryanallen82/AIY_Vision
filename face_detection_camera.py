@@ -12,6 +12,7 @@ LEFT_COLOR = (204, 0, 255)
 LOAD_SOUND = ('G5e', 'f5e', 'd5e', 'A5e', 'g5e', 'E5e', 'g5e', 'C6e')
 BUZZER_GPIO = 22
 
+
 def avg_joy_score(faces):
     if faces:
         return sum(face.joy_score for face in faces) / len(faces)
@@ -58,6 +59,7 @@ def main():
                     x, y, width, height = face.bounding_box
 
                 annotator.update()
+                w_last = [0]
 
                 if len(faces) >= 1:
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
@@ -65,6 +67,13 @@ def main():
                     camera.annotate_text = '%d' % x
                     alpha = (x+.01)/1200
                     leds.update(Leds.rgb_on(Color.blend(LEFT_COLOR, Color.GREEN, alpha)))
+                    if w_last > w:
+                        camera.annotate_text('Further')
+                    elif w_last < w:
+                        camera.annotate_text('Closer')
+                    else:
+                        camera.annotate_text('Same')
+                    w_last[0] = w
 
                 else:
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f' %
