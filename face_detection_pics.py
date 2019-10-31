@@ -18,8 +18,8 @@ focal_length = 1320
 camera_resolution = (1640, 1232)
 real_face_width_inches = 7
 
-earth = Image.open('./earth.jpg')
-mars = Image.open('./mars.jpg')
+earth = Image.open('earth.jpg')
+mars = Image.open('mars.jpg')
 
 earth = earth.convert('RGBA')
 mars = mars.convert('RGBA')
