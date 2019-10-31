@@ -44,7 +44,7 @@ def main():
                         Leds() as leds:
         leds.update(Leds.privacy_on())
         leds.update(Leds.rgb_on(Color.BLUE))
-        camera.start_preview()
+        #camera.start_preview()
         tone_player = TonePlayer(BUZZER_GPIO, bpm=70)
         #tone_player.play(*LOAD_SOUND)
 
@@ -95,7 +95,7 @@ def main():
                 else:
                     pass
 
-        camera.stop_preview()
+        #camera.stop_preview()
 
 
 if __name__ == '__main__':
