@@ -79,7 +79,7 @@ def main():
 
                     if x > 0:
                         alpha = x/float(1200)
-                        brightness = 254 - distance
+                        brightness = 254 - (distance * 2)
                     else:
                         alpha = .5
                         brightness = 254
