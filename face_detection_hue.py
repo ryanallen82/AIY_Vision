@@ -10,6 +10,8 @@ from aiy.vision.annotator import Annotator
 from aiy.leds import Leds, Color, Pattern
 from aiy.toneplayer import TonePlayer
 
+from phue import Bridge
+
 LEFT_COLOR = (204, 0, 255)
 LOAD_SOUND = ('G5e', 'f5e', 'd5e', 'A5e', 'g5e', 'E5e', 'g5e', 'C6e')
 BUZZER_GPIO = 22
@@ -18,11 +20,8 @@ focal_length = 1320
 camera_resolution = (1640, 1232)
 real_face_width_inches = 7
 
-earth = Image.open('earth.jpg')
-mars = Image.open('mars.jpg')
-
-earth = earth.convert('RGBA')
-mars = mars.convert('RGBA')
+b = Bridge('192.168.86.42')
+b.connect()
 
 
 def avg_joy_score(faces):
@@ -76,22 +75,20 @@ def main():
                 if len(faces) >= 1:
                     print('#%05d (%5.2f fps): num_faces=%d, avg_joy_score=%.2f, x=%.2f, y=%.2f, width=%.2f, height=%.2f' %
                         (inference.count, inference.rate, len(faces), avg_joy_score(faces), x, y, width, height))
-
+                    distance = focal_length * real_face_width_inches / width
 
                     if x > 0:
                         alpha = x/float(1200)
-                        pic_alpha = x/float(1200)
+                        brightness = 254 - distance
                     else:
                         alpha = .5
-                        pic_alpha = 0
+                        brightness = 254
                     try:
                         leds.update(Leds.rgb_on(Color.blend(Color.BLUE, Color.RED, alpha)))
-                        alphaBlend = Image.blend(earth, mars, alpha = pic_alpha)
-                        alphaBlend.show()
+                        b.set_light(2, 'bri', brightness)
                     except:
                         pass
-                    #distance = focal_length * real_face_width_inches / width
-                    #camera.annotate_text = '%d inches' % distance
+                    camera.annotate_text = '%d inches' % distance
                 else:
                     pass
 
