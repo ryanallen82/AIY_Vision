@@ -5,8 +5,9 @@ from time import sleep
 
 def main():
 
-    servo = Servo(PIN_A)
-    servo.mid()
+    while True:
+        servo = Servo(PIN_A)
+        servo.mid()
 
 
 if __name__ == '__main__':
