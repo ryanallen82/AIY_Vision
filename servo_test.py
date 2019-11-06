@@ -7,7 +7,7 @@ def main():
 
 
     myCorrectionMin=0.3
-    myCorrectionMax=0.25
+    myCorrectionMax=0.275
     maxPW=(2.0+myCorrectionMax)/1000
     minPW=(1.0-myCorrectionMin)/1000
 
