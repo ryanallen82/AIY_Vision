@@ -8,7 +8,8 @@ from picamera import PiCamera
 from gpiozero import Servo, AngularServo
 from aiy.pins import PIN_A
 
-from math import atan2
+from math import atan2, ceil
+from time import sleep
 
 def main():
 
@@ -72,17 +73,19 @@ def main():
                 if faces:
                     if face_detected_on_prev_frame:
                         angle, distance = face_data(face)
-                        if angle < min_angle:
-                            angle = min_angle
-                        if angle > max_angle:
-                            angle = max_angle
-                        servo.angle = (angle)*(-100)
-                        previous_angle = angle
+                        #if angle < min_angle:
+                        #    angle = min_angle
+                        #if angle > max_angle:
+                        #    angle = max_angle
+                        servo.angle = (int(math.ceil(angle/10))*10)*(-100)
+                        previous_angle = (int(math.ceil(angle/10))*10)*(-100)
                         print('Angle:' + str(angle))
+                        sleep(.5)
                     face_detected_on_prev_frame = True
                 else:
                     if not face_detected_on_prev_frame:
-                        servo.angle = previous_angle * (-100)
+                        servo.angle = previous_angle
+                        sleep(.5)
                         pass
                     face_detected_on_prev_frame = False
         camera.stop_preview()
