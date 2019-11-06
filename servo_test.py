@@ -1,6 +1,6 @@
 from gpiozero import AngularServo, Servo
 from aiy.pins import PIN_A
-import time
+from time import sleep
 
 
 def main():
