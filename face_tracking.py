@@ -3,6 +3,8 @@ import argparse
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
 from aiy.vision.annotator import Annotator
+from aiy.leds import Leds, Color
+
 from picamera import PiCamera
 
 from gpiozero import Servo, AngularServo
@@ -40,7 +42,9 @@ def main():
     max_angle = atan2(x_center,focal_length)
     face_detected_on_prev_frame = False
 
-    with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera:
+    with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera,\
+                        Leds() as leds:
+        leds.update(Leds.privacy_on())
         myCorrectionMin=0.3
         myCorrectionMax=0.275
         maxPW=(2.0+myCorrectionMax)/1000
@@ -76,6 +80,7 @@ def main():
                 print('Iteration #%d: num_faces=%d' % (i, len(faces)))
                 previous_angle = 0
                 if faces:
+                    leds.update(Leds.rgb_on(Color.BLUE))
                     if face_detected_on_prev_frame:
                         angle, distance = face_data(face)
                         #if angle < min_angle:
@@ -88,6 +93,7 @@ def main():
                         sleep(.5)
                     face_detected_on_prev_frame = True
                 else:
+                    leds.update(Leds.rgb_on(Color.RED))
                     if not face_detected_on_prev_frame:
                         servo.angle = previous_angle
                         sleep(.5)
