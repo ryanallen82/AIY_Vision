@@ -58,7 +58,7 @@ def main():
                        position = position + 0.1
                        if position > 1:
                            position = 0.99
-                    elif x > 500:
+                    elif x > 800:
                        print('             : Face right of center')
                        position = position - 0.1
                        if position < -1:
@@ -67,7 +67,7 @@ def main():
                        print('             : Face in CENTER of image')
                        positon = position
 
-                    #servo.value = position
+                    servo.value = position
 
                 else:
                     servo.mid()
