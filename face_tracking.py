@@ -25,7 +25,7 @@ def main():
         maxPW=(2.0+myCorrectionMax)/1000
         minPW=(1.0-myCorrectionMin)/1000
         camera.start_preview()
-        servo = Servo(PIN_A, min_pulse_width=myCorrectionMin, max_pulse_width=.myCorrectionMax)
+        servo = Servo(PIN_A, min_pulse_width=myCorrectionMin, max_pulse_width=myCorrectionMax)
         servo.mid()
         position = 0
 
