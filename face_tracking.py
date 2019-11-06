@@ -19,12 +19,13 @@ def main():
         help='Sets the number of frames to run for, otherwise runs forever.')
     args = parser.parse_args()
 
-    with PiCamera() as camera:
-        #camera.sensor_mode = 4
-        #camera.resolution = (1640, 1232)
-        #camera.framerate = 30
+    with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera:
+        myCorrectionMin=0.3
+        myCorrectionMax=0.275
+        maxPW=(2.0+myCorrectionMax)/1000
+        minPW=(1.0-myCorrectionMin)/1000
         camera.start_preview()
-        servo = Servo(PIN_A, min_pulse_width=.0007, max_pulse_width=.001725)
+        servo = Servo(PIN_A, min_pulse_width=myCorrectionMin, max_pulse_width=.myCorrectionMax)
         servo.mid()
         position = 0
 
