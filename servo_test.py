@@ -1,4 +1,4 @@
-from gpiozero import AngularServo
+from gpiozero import AngularServo, Servo
 from aiy.pins import PIN_A
 import time
 
