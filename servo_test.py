@@ -6,14 +6,14 @@ from time import sleep
 def main():
 
 
-    myCorrection=0.1
+    myCorrection=0.2
     maxPW=(2.0+myCorrection)/1000
     minPW=(1.0-myCorrection)/1000
 
     servo = Servo(PIN_A,min_pulse_width=minPW,max_pulse_width=maxPW)
     #servo = Servo(PIN_A)
     i = 0
-    while i in range(0,10):
+    while i in range(0,3):
         servo.mid()
         print("mid")
         sleep(0.5)
