@@ -6,7 +6,7 @@ import time
 def main():
 
     #with PiCamera() as camera:
-    servo = Servo(PIN_A, initial_angle=0, min_angle=-90, max_angle=90)
+    servo = AngularServo(PIN_A, initial_angle=0, min_angle=-90, max_angle=90)
     servo.angle = 0
     time.sleep(2)
     servo.angle = -90
