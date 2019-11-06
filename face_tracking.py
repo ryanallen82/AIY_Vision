@@ -53,7 +53,7 @@ def main():
                     face = faces[0]
                     x, y, width, height = face.bounding_box
                     print('             : Face is at %d' % x)
-                    if x < 300:
+                    if x < 500:
                        print('             : Face left of center')
                        position = position + 0.1
                        if position > 1:
