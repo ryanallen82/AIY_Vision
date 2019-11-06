@@ -10,7 +10,7 @@ from aiy.pins import PIN_A
 
 from math import atan2
 
-def main
+def main():
 
     def face_data(face):
         x, y, width, height = face.bounding_box
