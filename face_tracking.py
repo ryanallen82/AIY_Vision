@@ -2,7 +2,7 @@ import argparse
 
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
-from examples.vision.annotator import Annotator
+from aiy.vision.annotator import Annotator
 from picamera import PiCamera
 
 from gpiozero import Servo
