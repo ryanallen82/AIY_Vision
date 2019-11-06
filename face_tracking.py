@@ -20,9 +20,9 @@ def main():
     args = parser.parse_args()
 
     with PiCamera() as camera:
-        camera.sensor_mode = 4
-        camera.resolution = (1640, 1232)
-        camera.framerate = 30
+        #camera.sensor_mode = 4
+        #camera.resolution = (1640, 1232)
+        #camera.framerate = 30
         camera.start_preview()
         servo = Servo(PIN_A, min_pulse_width=.0007, max_pulse_width=.001725)
         servo.mid()
@@ -66,7 +66,7 @@ def main():
                        print('             : Face in CENTER of image')
                        positon = position
 
-                    servo.value = position
+                    #servo.value = position
 
                 else:
                     servo.mid()
