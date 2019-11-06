@@ -24,7 +24,7 @@ def main():
         camera.resolution = (1640, 1232)
         camera.framerate = 30
         camera.start_preview()
-        servo = Servo(PIN_A, min_pulse_width=.0005, max_pulse_width=.0019)
+        servo = Servo(PIN_A, min_pulse_width=.0001, max_pulse_width=.00025)
         servo.mid()
         position = 0
 
