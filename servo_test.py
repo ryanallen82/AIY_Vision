@@ -1,4 +1,4 @@
-from gpiozero import Servo
+from gpiozero import AngularServo
 from aiy.pins import PIN_A
 import time
 
@@ -6,16 +6,16 @@ import time
 def main():
 
     #with PiCamera() as camera:
-    servo = Servo(PIN_A)
-    servo.mid()
+    servo = Servo(PIN_A, initial_angle=0, min_angle=-90, max_angle=90)
+    servo.angle = 0
     time.sleep(2)
-    servo.min()
+    servo.angle = -90
     time.sleep(2)
-    servo.mid()
+    servo.angle = 0
     time.sleep(2)
-    servo.max()
+    servo.angle = 90
     time.sleep(2)
-    servo.mid()
+    servo.angle = 0
 
 if __name__ == '__main__':
     main()
