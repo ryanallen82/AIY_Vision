@@ -67,7 +67,7 @@ def main():
                     annotator.bounding_box(transform(face.bounding_box), fill=0)
                 annotator.update()
                 print('Iteration #%d: num_faces=%d' % (i, len(faces)))
-
+                previous_angle = 0
                 if faces:
                     if face_detected_on_prev_frame:
                         angle, distance = face_data(face)
@@ -75,13 +75,13 @@ def main():
                             angle = min_angle
                         if angle > max_angle:
                             angle = max_angle
-                        angle_to_look = (angle - min_angle)/(max_angle - min_angle)
                         servo.angle = (angle)*(-100)
+                        previous_angle = angle
                         print('Angle:' + str(angle))
                     face_detected_on_prev_frame = True
                 else:
                     if not face_detected_on_prev_frame:
-                        servo.angle = 0
+                        servo.angle = previous_angle * (-100)
                         pass
                     face_detected_on_prev_frame = False
         camera.stop_preview()
