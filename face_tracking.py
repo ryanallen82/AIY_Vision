@@ -76,7 +76,7 @@ def main():
                         if angle > max_angle:
                             angle = max_angle
                         angle_to_look = (angle - min_angle)/(max_angle - min_angle)
-                        servo.angle = (angle)*100
+                        servo.angle = (angle)*(-100)
                         print('Angle:' + str(angle))
                     face_detected_on_prev_frame = True
                 else:
