@@ -12,6 +12,7 @@ def main():
 
     servo = Servo(PIN_A,min_pulse_width=minPW,max_pulse_width=maxPW)
     #servo = Servo(PIN_A)
+    i = 0
     while i in range(0,10):
         servo.mid()
         print("mid")
@@ -26,6 +27,7 @@ def main():
         print("max")
         sleep(1)
         servo.mid()
+        i+=1
 
 if __name__ == '__main__':
     main()
