@@ -76,7 +76,7 @@ def main():
                         if angle > max_angle:
                             angle = max_angle
                         angle_to_look = (angle - min_angle)/(max_angle - min_angle)
-                        print('Angle:' + str(angle_to_look))
+                        print('Angle:' + str(angle))
                     face_detected_on_prev_frame = True
                 else:
                     if not face_detected_on_prev_frame:
