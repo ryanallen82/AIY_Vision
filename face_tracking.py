@@ -6,7 +6,7 @@ from aiy.vision.annotator import Annotator
 from picamera import PiCamera
 
 from gpiozero import Servo
-from aiy.vision.pins import PIN_A
+from aiy.pins import PIN_A
 
 def main():
     parser = argparse.ArgumentParser()
