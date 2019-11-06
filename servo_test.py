@@ -5,8 +5,10 @@ import time
 
 def main():
 
-    #with PiCamera() as camera:
-    servo = AngularServo(PIN_A, initial_angle=0, min_angle=-90, max_angle=90)
+    maxPW=(2.0+myCorrection)/1000
+    minPW=(1.0-myCorrection)/1000
+
+    servo = AngularServo(PIN_A, initial_angle=0, min_angle=-90, max_angle=90, min_pulse_width=minPW, max_pulse_width=maxPW)
     servo.angle = 0
     time.sleep(2)
     servo.angle = -90
