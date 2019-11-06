@@ -10,9 +10,9 @@ def main():
     maxPW=(2.0+myCorrection)/1000
     minPW=(1.0-myCorrection)/1000
 
-    #servo = Servo(PIN_A,min_pulse_width=minPW,max_pulse_width=maxPW)
-    servo = Servo(PIN_A)
-    while True:
+    servo = Servo(PIN_A,min_pulse_width=minPW,max_pulse_width=maxPW)
+    #servo = Servo(PIN_A)
+    while i in range(0,10):
         servo.mid()
         print("mid")
         sleep(0.5)
@@ -25,6 +25,7 @@ def main():
         servo.max()
         print("max")
         sleep(1)
+        servo.mid()
 
 if __name__ == '__main__':
     main()
