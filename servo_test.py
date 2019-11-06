@@ -6,9 +6,10 @@ from time import sleep
 def main():
 
 
-    myCorrection=0.3
-    maxPW=(2.0+myCorrection)/1000
-    minPW=(1.0-myCorrection)/1000
+    myCorrectionMin=0.3
+    myCorrectionMax=.25
+    maxPW=(2.0+myCorrectionMin)/1000
+    minPW=(1.0-myCorrectionMax)/1000
 
     servo = Servo(PIN_A,min_pulse_width=minPW,max_pulse_width=maxPW)
     #servo = Servo(PIN_A)
