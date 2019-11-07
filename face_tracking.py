@@ -45,8 +45,8 @@ def main():
     with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera,\
                         Leds() as leds:
         leds.update(Leds.privacy_on())
-        myCorrectionMin=0.3
-        myCorrectionMax=0.275
+        myCorrectionMin=0.2
+        myCorrectionMax=0.2
         maxPW=(2.0+myCorrectionMax)/1000
         minPW=(1.0-myCorrectionMin)/1000
         camera.start_preview()
