@@ -52,11 +52,7 @@ def main():
         camera.start_preview()
         servo = AngularServo(PIN_A, min_pulse_width=minPW, max_pulse_width=maxPW)
         #servo = AngularServo(PIN_A, max_pulse_width = maxPW)
-        servo.max()
-        sleep(1)
-        servo.min()
-        sleep(1)
-        servo.mid()
+        previous_angle = 0
 
 
         annotator = Annotator(camera, dimensions=(320, 240))
