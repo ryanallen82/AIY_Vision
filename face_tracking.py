@@ -51,8 +51,9 @@ def main():
         maxPW=(2.0+myCorrectionMax)/1000
         minPW=(1.0-myCorrectionMin)/1000
         camera.start_preview()
-        servo = AngularServo(PIN_A, min_pulse_width=minPW, max_pulse_width=maxPW)
+        #servo = AngularServo(PIN_A, min_pulse_width=minPW, max_pulse_width=maxPW)
         #servo = AngularServo(PIN_A, max_pulse_width = maxPW)
+        servo = AngularServo(PIN_A)
 
 
 
