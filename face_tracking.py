@@ -89,13 +89,13 @@ def main():
                         servo.angle = angle*(-100)
                         previous_angle = angle*(-100)
                         print('Angle:' + str(angle))
-                        sleep(.1)
+                        #sleep(.1)
                     face_detected_on_prev_frame = True
                 else:
                     leds.update(Leds.rgb_on(Color.RED))
                     if not face_detected_on_prev_frame:
                         servo.angle = previous_angle
-                        sleep(.1)
+                        #sleep(.1)
                         pass
                     face_detected_on_prev_frame = False
         camera.stop_preview()
