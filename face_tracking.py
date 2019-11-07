@@ -41,6 +41,7 @@ def main():
     min_angle = atan2(-x_center,focal_length)       # min angle where face can be detected (leftmost area) in radians
     max_angle = atan2(x_center,focal_length)
     face_detected_on_prev_frame = False
+    previous_angle = 0
 
     with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera,\
                         Leds() as leds:
@@ -52,7 +53,7 @@ def main():
         camera.start_preview()
         servo = AngularServo(PIN_A, min_pulse_width=minPW, max_pulse_width=maxPW)
         #servo = AngularServo(PIN_A, max_pulse_width = maxPW)
-        previous_angle = 0
+
 
 
         annotator = Annotator(camera, dimensions=(320, 240))
