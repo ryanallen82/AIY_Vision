@@ -4,6 +4,7 @@ from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
 from aiy.vision.annotator import Annotator
 from aiy.leds import Leds, Color
+from aiy.toneplayer import TonePlayer
 
 from picamera import PiCamera
 
@@ -43,6 +44,10 @@ def main():
     face_detected_on_prev_frame = False
     previous_angle = 0
 
+    LOAD_SOUND = ('G5e', 'f5e', 'd5e', 'A5e', 'g5e', 'E5e', 'g5e', 'C6e')
+    BUZZER_GPIO = 22
+
+
     with PiCamera(sensor_mode=4, resolution=(1640, 1232), framerate=30) as camera,\
                         Leds() as leds:
         leds.update(Leds.privacy_on())
@@ -51,6 +56,8 @@ def main():
         maxPW=(2.0+myCorrectionMax)/1000
         minPW=(1.0-myCorrectionMin)/1000
         camera.start_preview()
+        tone_player = TonePlayer(BUZZER_GPIO, bpm=70)
+        tone_player.play(*LOAD_SOUND)
         #servo = AngularServo(PIN_A, min_pulse_width=minPW, max_pulse_width=maxPW)
         servo = AngularServo(PIN_A, max_pulse_width = maxPW)
         #servo = AngularServo(PIN_A)
